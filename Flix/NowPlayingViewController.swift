@@ -9,12 +9,10 @@
 import UIKit
 import AlamofireImage
 
-class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate {
+class NowPlayingViewController: UIViewController, UITableViewDataSource{
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     var movies: [[String: Any]] = []
-    var filteredMovies: [[String: Any]] = []
-    var isSearching = false
     var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
@@ -28,8 +26,6 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
         refreshControl.addTarget(self, action: #selector(NowPlayingViewController.didPullToRefresh(_:)), for: .valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
         tableView.dataSource = self
-        searchBar.delegate = self
-        searchBar.returnKeyType = UIReturnKeyType.done
         tableView.rowHeight = 275
         fetchMovies()
     }
@@ -77,22 +73,13 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
     
     //this method tells how many cells we are going to have
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isSearching {
-            return filteredMovies.count
-        }
         return movies.count
     }
     
     //this method tells what the cell is going to be
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
-        let movie: [String: Any]
-        if isSearching {
-            movie = filteredMovies[indexPath.row]
-        } else {
-            movie = movies[indexPath.row]
-        }
-        //let movie = movies[indexPath.row]
+        let movie = movies[indexPath.row]
         
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
@@ -106,22 +93,16 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
         return cell
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchBar.text == nil || searchBar.text == "" {
-            isSearching = false
-            view.endEditing(true)
-            tableView.reloadData()
-        } else {
-            isSearching = true
-            let text = searchBar.text
-            filteredMovies = movies.filter{$0.contains{text in
-                return true
-            }}
-            print(text as Any)
-            tableView.reloadData()
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell = sender as! UITableViewCell
+        if let indexPath = tableView.indexPath(for: cell){
+            let movie = movies[indexPath.row]
+            let detailViewController = segue.destination as! DetailViewController
+            detailViewController.movie = movie
         }
     }
     
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
