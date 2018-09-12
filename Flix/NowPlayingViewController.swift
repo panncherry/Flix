@@ -9,18 +9,22 @@
 import UIKit
 import AlamofireImage
 
-class NowPlayingViewController: UIViewController, UITableViewDataSource{
+class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate{
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     var movies: [[String: Any]] = []
     var refreshControl: UIRefreshControl!
     
+    var filteredData: [[String: Any]]? = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
+        filteredData = movies
         refreshScreen()
     }
     
-    //this method refreshes the network and fetch the movies
+    //code to refresh the network and fetch the movies
     func refreshScreen(){
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(NowPlayingViewController.didPullToRefresh(_:)), for: .valueChanged)
@@ -30,12 +34,12 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource{
         fetchMovies()
     }
     
-    //this method refresh the page and fetch movies
+    //code to fetch movies when pull to refresh
     @objc func didPullToRefresh(_ refreshControl: UIRefreshControl) {
         fetchMovies()
     }
     
-    //this method fetches now playing movies
+    //code to fetch now playing movies
     func fetchMovies () {
         
         //create URL
@@ -61,22 +65,23 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource{
                 self.refreshControl.endRefreshing()
             }
         }
-        task.resume() //starts the task
+        //starts the task
+        task.resume()
     }
     
-    //this method display error message when network fails
+    //code to display error message when network fails
     func networkErrorAlert(title:String, message:String){
         let networkErrorAlert = UIAlertController(title: "Network Error", message: "The internet connection appears to be offline. Please try again later.", preferredStyle: UIAlertControllerStyle.alert)
         networkErrorAlert.addAction(UIAlertAction(title: "Try again", style: UIAlertActionStyle.default, handler: { (action) in self.fetchMovies()}))
         self.present(networkErrorAlert, animated: true, completion: nil)
     }
     
-    //this method tells how many cells we are going to have
+    //code to count movies
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
     }
     
-    //this method tells what the cell is going to be
+    //code to create cell and display data
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         let movie = movies[indexPath.row]
@@ -93,6 +98,7 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource{
         return cell
     }
     
+    //code to connect with detailViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let cell = sender as! UITableViewCell
         if let indexPath = tableView.indexPath(for: cell){
@@ -102,6 +108,40 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource{
         }
     }
     
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.searchBar.showsCancelButton = true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+    }
+    
+    /*
+    func filterMovieTableView(_ filterMovieTableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = filterMovieTableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
+        cell.textLabel?.text = filteredData[indexPath.row]
+        return cell
+    }
+    func filterMovieTableView(_ filterMovieTableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return filteredData!.count
+    }
+    
+    // This method updates filteredData based on the text in the Search Box
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        // When there is no text, filteredData is the same as the original data
+        // When user has entered text into the search box
+        // Use the filter method to iterate over all items in the data array
+        // For each item, return true if the item should be included and false if the
+        // item should NOT be included
+        filteredData = searchText.isEmpty ? movies : movies.filter { (item: [String: Any]) -> Bool in
+            // If dataItem matches the searchText, return true to include it
+            return item.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+        }
+        
+        tableView.reloadData()
+    }*/
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
