@@ -64,7 +64,7 @@ limitations under the License.
 
 Flix is a movies app displaying box office and top rental DVDs using [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: **4** hours spent in total
+Time spent: **10** hours spent in total
 
 ## User Stories
 
@@ -76,16 +76,18 @@ The following **required** functionality is completed:
 The following **stretch** features are implemented:
 
 - [x] User can tap a poster in the collection view to see a detail screen of that movie (+3pts)
-- [ ] In the detail view, when the user taps the poster, a new screen is presented modally where they can view the trailer (+3pts)
+- [x] In the detail view, when the user taps the poster, a new screen is presented modally where they can view the trailer (+3pts)
 - [x] Customize the navigation bar (+1pt)
 - [x] List in any optionals you didn't finish from last week (+1-3pts)
-- ... func searchBarTextDidBeginEditing(_ searchBar: UISearchBar)
-- ...func searchBarCancelButtonClicked(_ searchBar: UISearchBar)
+- ... User can search for a movie (+3pt)
+- ... While poster is being fetched, user see's a placeholder image (+1pt)
+- ... User sees image transition for images coming from network, not when it is loaded from cache (+1pt)
+- ... Customize the selection effect of the cell (+1pt)
+- ... For the large poster, load the low resolution image first and then switch to the high resolution image when complete (+2pt)
 
 The following **additional** features are implemented:
 
 - [x] List anything else that you can get done to improve the app functionality!
-... User can "Pull to refresh" the poster image collection view
 ... User sees a loading state while waiting for the poster images to load
 ... User sees an alert when there's a networking error
 
@@ -98,13 +100,13 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://i.imgur.com/mZudYFK.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/EqLrgyo.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+There was an issue when I tried to connect a new View Controller, MoiveTrailerViewController with an exisiting View Controller, PosterDetailViewController to present modally where user can view the trailer. The cause of the issue was I  dragged and dropped the TapGestureRecognizer onto the UIImageView instead of dropping it over the view of the PosterDetailViewController to make the connection between the two controllers.
 
 ## License
 

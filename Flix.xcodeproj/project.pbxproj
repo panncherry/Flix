@@ -12,6 +12,7 @@
 		08C59B3C2148C8E5004CDC07 /* PosterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C59B3B2148C8E5004CDC07 /* PosterDetailViewController.swift */; };
 		08CF306F21486E0600B56CDC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CF306E21486E0600B56CDC /* DetailViewController.swift */; };
 		08DDA499213F565100F64B90 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DDA498213F565100F64B90 /* MovieCell.swift */; };
+		08DE52F0214EDFEB00AE45E2 /* MovieTrailerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DE52EF214EDFEB00AE45E2 /* MovieTrailerViewController.swift */; };
 		08F01E442134EF990038AA2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F01E432134EF990038AA2C /* AppDelegate.swift */; };
 		08F01E492134EF990038AA2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08F01E472134EF990038AA2C /* Main.storyboard */; };
 		08F01E4B2134EF9B0038AA2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08F01E4A2134EF9B0038AA2C /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 		08C59B3B2148C8E5004CDC07 /* PosterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterDetailViewController.swift; sourceTree = "<group>"; };
 		08CF306E21486E0600B56CDC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		08DDA498213F565100F64B90 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		08DE52EF214EDFEB00AE45E2 /* MovieTrailerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTrailerViewController.swift; sourceTree = "<group>"; };
 		08F01E402134EF990038AA2C /* Flix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08F01E432134EF990038AA2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08F01E482134EF990038AA2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -102,9 +104,11 @@
 		08CF306C21486D9400B56CDC /* viewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				08F01E712134FA240038AA2C /* NowPlayingViewController.swift */,
 				08CF306E21486E0600B56CDC /* DetailViewController.swift */,
 				0897158E214883E90060A081 /* SuperheroViewController.swift */,
 				08C59B3B2148C8E5004CDC07 /* PosterDetailViewController.swift */,
+				08DE52EF214EDFEB00AE45E2 /* MovieTrailerViewController.swift */,
 			);
 			path = viewControllers;
 			sourceTree = "<group>";
@@ -146,7 +150,6 @@
 				08CF306D21486DB400B56CDC /* Views */,
 				08CF306C21486D9400B56CDC /* viewControllers */,
 				08F01E432134EF990038AA2C /* AppDelegate.swift */,
-				08F01E712134FA240038AA2C /* NowPlayingViewController.swift */,
 				08F01E472134EF990038AA2C /* Main.storyboard */,
 				08F01E4A2134EF9B0038AA2C /* Assets.xcassets */,
 				08F01E4C2134EF9B0038AA2C /* LaunchScreen.storyboard */,
@@ -388,11 +391,13 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Flix/Pods-Flix-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 			);
@@ -410,6 +415,7 @@
 			files = (
 				08F01E722134FA240038AA2C /* NowPlayingViewController.swift in Sources */,
 				0897158D2148835B0060A081 /* PosterCell.swift in Sources */,
+				08DE52F0214EDFEB00AE45E2 /* MovieTrailerViewController.swift in Sources */,
 				0897158F214883E90060A081 /* SuperheroViewController.swift in Sources */,
 				08F01E442134EF990038AA2C /* AppDelegate.swift in Sources */,
 				08C59B3C2148C8E5004CDC07 /* PosterDetailViewController.swift in Sources */,

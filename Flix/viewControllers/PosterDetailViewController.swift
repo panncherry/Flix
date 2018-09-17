@@ -28,7 +28,7 @@ class PosterDetailViewController: UIViewController {
     @IBOutlet weak var releaseDateLabel: UILabel!
     
     @IBOutlet weak var overviewLabel: UILabel!
-    
+     
     var movie: [String: Any]?
     
     override func viewDidLoad() {
@@ -48,7 +48,12 @@ class PosterDetailViewController: UIViewController {
         }
     }
     
+   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let trailerViewController = segue.destination as! MovieTrailerViewController
+        trailerViewController.movie = movie
+    }
     
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
