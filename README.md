@@ -113,6 +113,7 @@ There was an issue when I tried to connect a new View Controller, MoiveTrailerVi
 
 Copyright [2018] [Pann Cherry]
 
+
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -124,5 +125,4 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-=======
->>>>>>> 782e05afbbdf2a8cc739f5009749dcaa54f2cf4f
+<<<<<<< HEAD
