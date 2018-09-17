@@ -58,6 +58,7 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+<<<<<<< HEAD
 
 
 # Project 2 - Flix
@@ -123,3 +124,5 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+=======
+>>>>>>> 782e05afbbdf2a8cc739f5009749dcaa54f2cf4f
