@@ -94,8 +94,8 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. Get the location of the movie theraters near the user and display the showing time for movie
+2. Allow the user to purchase moive ticket using app
 
 ## Video Walkthrough
 
