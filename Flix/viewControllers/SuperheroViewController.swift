@@ -130,8 +130,8 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource, UIS
     
     //code to display error message when network fails
     func networkErrorAlert(title:String, message:String){
-        let networkErrorAlert = UIAlertController(title: "Network Error", message: "The internet connection appears to be offline. Please try again later.", preferredStyle: UIAlertControllerStyle.alert)
-        networkErrorAlert.addAction(UIAlertAction(title: "Try again", style: UIAlertActionStyle.default, handler: { (action) in self.fetchMovies()}))
+        let networkErrorAlert = UIAlertController(title: "Network Error", message: "The internet connection appears to be offline. Please try again later.", preferredStyle: UIAlertController.Style.alert)
+        networkErrorAlert.addAction(UIAlertAction(title: "Try again", style: UIAlertAction.Style.default, handler: { (action) in self.fetchMovies()}))
         self.present(networkErrorAlert, animated: true, completion: nil)
     }
     

@@ -271,13 +271,16 @@
 				TargetAttributes = {
 					08F01E3F2134EF990038AA2C = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 					};
 					08F01E532134EF9B0038AA2C = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 						TestTargetID = 08F01E3F2134EF990038AA2C;
 					};
 					08F01E5E2134EF9C0038AA2C = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 						TestTargetID = 08F01E3F2134EF990038AA2C;
 					};
 				};
@@ -603,7 +606,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = RnR.Flix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -622,7 +625,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = RnR.Flix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -643,7 +646,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = RnR.FlixTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Flix.app/Flix";
 			};
@@ -665,7 +668,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = RnR.FlixTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Flix.app/Flix";
 			};
@@ -686,7 +689,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = RnR.FlixUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Flix;
 			};
@@ -707,7 +710,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = RnR.FlixUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Flix;
 			};
