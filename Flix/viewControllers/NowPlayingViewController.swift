@@ -29,7 +29,9 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
-        tableView.rowHeight = 275
+        //tableView.rowHeight = 275
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 50
         searchBar.delegate = self
         //searchBar.becomeFirstResponder()
         refreshControl = UIRefreshControl()

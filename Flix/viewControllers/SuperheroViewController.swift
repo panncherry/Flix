@@ -35,7 +35,10 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource, UIS
         let interItemSpacingTotal = layout.minimumLineSpacing * (cellPerLine - 1)
         let width = collectionView.frame.size.width/cellPerLine - interItemSpacingTotal/cellPerLine
         layout.itemSize = CGSize(width: width, height: width*3/2)
+        
+        
         self.activityIndicator.startAnimating()
+        
         //code to display the activityIndicator for desired seconds
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.refreshScreen()
@@ -62,6 +65,20 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource, UIS
             imageLoad(smallImgURL: smallPosterPath + posterPathString, largeImgURL: largePosterPath + posterPathString, img: cell.posterImageView)
         }
         return cell
+    }
+    
+    public override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        if UIDevice.current.orientation.isLandscape,
+            let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            let width = view.frame.height - 22
+            layout.itemSize = CGSize(width: width - 16, height: 260)
+            layout.invalidateLayout()
+        } else if UIDevice.current.orientation.isPortrait,
+            let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            let width = view.frame.width - 22
+            layout.itemSize = CGSize(width: width - 16, height: 260)
+            layout.invalidateLayout()
+        }
     }
     
     //code to fetche now playing movies
