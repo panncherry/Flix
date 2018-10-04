@@ -14,17 +14,12 @@ var allMovies: [[String: Any]] = []
 
 class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate{
     
-    @IBOutlet weak var tableView: UITableView!
-    
-    @IBOutlet weak var searchBar: UISearchBar!
-    
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
-    var refreshControl: UIRefreshControl!
-    
     var movies: [[String: Any]] = []
-    
     var filteredMovie:[[String: Any]]!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
