@@ -12,11 +12,11 @@ import WebKit
 class MovieTrailerViewController: UIViewController, WKUIDelegate {
 
     @IBOutlet weak var movieTrailerWebView: WKWebView!
-    var movie: [String: Any]?
+    var movie: Movie?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let id = movie!["id"] as! NSNumber
+        let id = movie!.id
         let movieBaseURLString = "https://api.themoviedb.org/3/movie/"
         let movieBaseURLString2 = "/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US"
         let trailerURL = URL(string: movieBaseURLString + id.stringValue + movieBaseURLString2)

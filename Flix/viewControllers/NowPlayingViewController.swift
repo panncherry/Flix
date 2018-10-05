@@ -10,45 +10,37 @@ import UIKit
 import AlamofireImage
 import AFNetworking
 
-var allMovies: [[String: Any]] = []
+var allMovies: [Movie] = []
 
 class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate{
     
-    var movies: [[String: Any]] = []
-    var filteredMovie:[[String: Any]]!
+    var movies: [Movie] = []
+    var filteredMovie:[Movie]!
+    var refreshControl: UIRefreshControl!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
-        //tableView.rowHeight = 275
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 50
         searchBar.delegate = self
-        //searchBar.becomeFirstResponder()
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(NowPlayingViewController.didPullToRefresh(_:)), for: .valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
         self.activityIndicator.startAnimating()
-        //code to display the activityIndicator for desired seconds
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.fetchMovies()
         }
-        
     }
-
-    //code to fetch now playing movies
+    
+    //fetch now playing movies
     func fetchMovies () {
-        //create URL
         let createURL = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=41219c2c63e30faae11b6519a4be8da0")!
-        //create URL request
         let requestURL = URLRequest(url: createURL, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
-        //create URL session
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
-        //create a task to get the data
         let task = session.dataTask(with: requestURL){
             (data, response, error) in
             if let error = error {
@@ -56,18 +48,21 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
                 self.networkErrorAlert(title: "Network Error", message: "Please try again later.")
             } else if let data = data {
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                let movies = dataDictionary["results"] as! [[String: Any]]
-                self.movies = movies
+                let movieDictionary = dataDictionary["results"] as! [[String: Any]]
+                self.movies = []
+                for movie in movieDictionary{
+                    let movie = Movie(dictionary: movie)
+                    self.movies.append(movie)
+                }
                 self.filteredMovie = self.movies
                 self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
                 self.activityIndicator.stopAnimating()
             }
         }
-        //starts the task
         task.resume()
     }
-
+    
     //code to count movies
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
@@ -76,43 +71,36 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
     //code to create cell and display data
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
-        // code to change color of the cell user selected
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.orange
         cell.selectedBackgroundView = backgroundView
-        //code to set the color of all cells
         cell.contentView.backgroundColor = UIColor.white
         let movie = movies[indexPath.row]
-        let title = movie["title"] as! String
-        let overview = movie["overview"] as! String
-        cell.titleLabel.text = title
-        cell.overviewLabel.text = overview
-        let posterPathString = movie["poster_path"] as! String
-        /*
-        let baseURLString = "https://image.tmdb.org/t/p/w500"
-        let posterURL = URL(string: baseURLString + posterPathString)!
-        //code to display placeholderImage while fetching poster image
-        let placeholderImage = UIImage(named: "PlaceHolderImg")
-        //code to display round corner image for selected cell
-        let filter = AspectScaledToFillSizeWithRoundedCornersFilter(size: cell.posterImageView.frame.size,radius: 20.0)
-        cell.posterImageView.af_setImage(withURL: posterURL, placeholderImage: placeholderImage, filter: filter, imageTransition: .crossDissolve(0.2))
-        */
-
+        cell.titleLabel.text = movie.title
+        cell.overviewLabel.text = movie.overview
+        let posterPathString = movie.posterPath
         let smallPosterPath = "https://image.tmdb.org/t/p/w45"
         let largePosterPath = "https://image.tmdb.org/t/p/original"
         imageLoad(smallImgURL: smallPosterPath + posterPathString, largeImgURL: largePosterPath + posterPathString, img: cell.posterImageView)
-       
         return cell
     }
-
+    
     //code to fetch movies when pull to refresh
     @objc func didPullToRefresh(_ refreshControl: UIRefreshControl) {
         fetchMovies()
     }
     
-  // code to update filteredMovie based on the text in the Search Box
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    // code to update filteredMovie based on the text in the Search Box
+    /*func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         movies = searchText.isEmpty ? filteredMovie : filteredMovie.filter { ($0["title"] as! String).lowercased().contains(searchBar.text!.lowercased()) }
+        tableView.reloadData()
+    }*/
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        movies = searchText.isEmpty ? filteredMovie : filteredMovie.filter({ movie -> Bool in
+            let dataString = movie.title
+            return dataString.lowercased().range(of: searchText.lowercased()) != nil
+        })
         tableView.reloadData()
     }
     
@@ -186,6 +174,7 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
         }
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

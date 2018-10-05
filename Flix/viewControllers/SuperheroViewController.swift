@@ -9,18 +9,14 @@
 import UIKit
 
 class SuperheroViewController: UIViewController, UICollectionViewDataSource, UISearchBarDelegate {
-
+    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
     @IBOutlet weak var searchBar: UISearchBar!
-    
     @IBOutlet weak var collectionView: UICollectionView!
     
     var refreshControl: UIRefreshControl!
-    
-    var filteredMovie:[[String: Any]]!
-    
-    var movies: [[String: Any]] = []
+    var filteredMovie:[Movie]!
+    var movies: [Movie] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,16 +50,11 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource, UIS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PosterCell", for: indexPath) as! PosterCell
         let movie = movies[indexPath.item]
-        if let posterPathString = movie["poster_path"] as? String {
-            /*
-             let baseURLString = "https://image.tmdb.org/t/p/w500"
-             let posterURL = URL(string: baseURLString + posterPathString)!
-             cell.posterImageView.af_setImage(withURL: posterURL)
-             */
-            let smallPosterPath = "https://image.tmdb.org/t/p/w45"
-            let largePosterPath = "https://image.tmdb.org/t/p/original"
-            imageLoad(smallImgURL: smallPosterPath + posterPathString, largeImgURL: largePosterPath + posterPathString, img: cell.posterImageView)
-        }
+        let posterPathString = movie.posterPath
+        let smallPosterPath = "https://image.tmdb.org/t/p/w45"
+        let largePosterPath = "https://image.tmdb.org/t/p/original"
+        imageLoad(smallImgURL: smallPosterPath + posterPathString, largeImgURL: largePosterPath + posterPathString, img: cell.posterImageView)
+        
         return cell
     }
     
@@ -83,13 +74,9 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource, UIS
     
     //code to fetche now playing movies
     func fetchMovies () {
-        //create URL
         let createURL = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=41219c2c63e30faae11b6519a4be8da0")!
-        //create URL request
         let requestURL = URLRequest(url: createURL, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
-        //create URL session
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
-        //create a task to get the data
         let task = session.dataTask(with: requestURL){
             (data, response, error) in
             if let error = error {
@@ -97,15 +84,18 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource, UIS
                 self.networkErrorAlert(title: "Network Error", message: "Please try again later.")
             } else if let data = data {
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                let movies = dataDictionary["results"] as! [[String: Any]]
-                self.movies = movies
+                let movieDictionary = dataDictionary["results"] as! [[String: Any]]
+                self.movies = []
+                for movie in movieDictionary{
+                    let movie = Movie(dictionary: movie)
+                    self.movies.append(movie)
+                }
                 self.filteredMovie = self.movies
                 self.collectionView.reloadData()
                 self.refreshControl.endRefreshing()
                 self.activityIndicator.stopAnimating()
             }
         }
-        //starts the task
         task.resume()
     }
     
@@ -125,7 +115,10 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource, UIS
     
     // code to update filteredMovie based on the text in the Search Box
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        movies = searchText.isEmpty ? filteredMovie : filteredMovie.filter { ($0["title"] as! String).lowercased().contains(searchBar.text!.lowercased()) }
+        movies = searchText.isEmpty ? filteredMovie : filteredMovie.filter({ movie -> Bool in
+            let dataString = movie.title
+            return dataString.lowercased().range(of: searchText.lowercased()) != nil
+        })
         collectionView.reloadData()
     }
     
@@ -198,7 +191,7 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource, UIS
             posterDetailViewController.movie = movie
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
