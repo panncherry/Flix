@@ -38,29 +38,15 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
     
     //fetch now playing movies
     func fetchMovies () {
-        let createURL = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=41219c2c63e30faae11b6519a4be8da0")!
-        let requestURL = URLRequest(url: createURL, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
-        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
-        let task = session.dataTask(with: requestURL){
-            (data, response, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                self.networkErrorAlert(title: "Network Error", message: "Please try again later.")
-            } else if let data = data {
-                let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                let movieDictionary = dataDictionary["results"] as! [[String: Any]]
-                self.movies = []
-                for movie in movieDictionary{
-                    let movie = Movie(dictionary: movie)
-                    self.movies.append(movie)
-                }
-                self.filteredMovie = self.movies
+        MovieApiManager().nowPlayingMovies { (movies: [Movie]?, error: Error?) in
+            if let movies = movies {
+                self.movies = movies
+                self.filteredMovie = movies
                 self.tableView.reloadData()
-                self.refreshControl.endRefreshing()
                 self.activityIndicator.stopAnimating()
+                self.refreshControl.endRefreshing()
             }
         }
-        task.resume()
     }
     
     //code to count movies
@@ -68,20 +54,14 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
         return movies.count
     }
     
-    //code to create cell and display data
+    //code to create cell and display data (Reactor)
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.orange
         cell.selectedBackgroundView = backgroundView
         cell.contentView.backgroundColor = UIColor.white
-        let movie = movies[indexPath.row]
-        cell.titleLabel.text = movie.title
-        cell.overviewLabel.text = movie.overview
-        let posterPathString = movie.posterPath
-        let smallPosterPath = "https://image.tmdb.org/t/p/w45"
-        let largePosterPath = "https://image.tmdb.org/t/p/original"
-        imageLoad(smallImgURL: smallPosterPath + posterPathString, largeImgURL: largePosterPath + posterPathString, img: cell.posterImageView)
+        cell.movie = movies[indexPath.row]
         return cell
     }
     
@@ -89,13 +69,7 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
     @objc func didPullToRefresh(_ refreshControl: UIRefreshControl) {
         fetchMovies()
     }
-    
-    // code to update filteredMovie based on the text in the Search Box
-    /*func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        movies = searchText.isEmpty ? filteredMovie : filteredMovie.filter { ($0["title"] as! String).lowercased().contains(searchBar.text!.lowercased()) }
-        tableView.reloadData()
-    }*/
-    
+
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         movies = searchText.isEmpty ? filteredMovie : filteredMovie.filter({ movie -> Bool in
             let dataString = movie.title
@@ -147,7 +121,6 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
                                 })
                             })
         }) { (request, response, error) -> Void in
-            
         }
     }
     
@@ -174,7 +147,6 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
         }
     }
 
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

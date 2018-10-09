@@ -74,29 +74,15 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource, UIS
     
     //code to fetche now playing movies
     func fetchMovies () {
-        let createURL = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=41219c2c63e30faae11b6519a4be8da0")!
-        let requestURL = URLRequest(url: createURL, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
-        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
-        let task = session.dataTask(with: requestURL){
-            (data, response, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                self.networkErrorAlert(title: "Network Error", message: "Please try again later.")
-            } else if let data = data {
-                let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                let movieDictionary = dataDictionary["results"] as! [[String: Any]]
-                self.movies = []
-                for movie in movieDictionary{
-                    let movie = Movie(dictionary: movie)
-                    self.movies.append(movie)
-                }
-                self.filteredMovie = self.movies
+        MovieApiManager().superheroMovies { (movies: [Movie]?, error: Error?) in
+            if let movies = movies {
+                self.movies = movies
+                self.filteredMovie = movies
                 self.collectionView.reloadData()
                 self.refreshControl.endRefreshing()
                 self.activityIndicator.stopAnimating()
             }
         }
-        task.resume()
     }
     
     //code to refresh the network and fetch the movies
@@ -165,7 +151,6 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource, UIS
                                 })
                             })
         }) { (request, response, error) -> Void in
-            
         }
     }
     
