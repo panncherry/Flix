@@ -25,8 +25,8 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource, UIS
         //searchBar.becomeFirstResponder()
         refreshControl = UIRefreshControl()
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.minimumInteritemSpacing = 5
-        layout.minimumLineSpacing = layout.minimumInteritemSpacing
+        layout.minimumInteritemSpacing = 5 //The minimum spacing to use between items in the same row.
+        layout.minimumLineSpacing = layout.minimumInteritemSpacing //The minimum spacing to use between lines of items in the grid.
         let cellPerLine: CGFloat = 2
         let interItemSpacingTotal = layout.minimumLineSpacing * (cellPerLine - 1)
         let width = collectionView.frame.size.width/cellPerLine - interItemSpacingTotal/cellPerLine
