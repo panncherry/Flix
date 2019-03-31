@@ -44,21 +44,12 @@ Flix is a movies app that allows users to browse movies now playing in thereater
 
 
 
-## Video Walkthrough
-
-Here's a walkthrough of implemented user stories:
-
-<img src='https://i.imgur.com/h0mCaK8.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
-
-
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://i.imgur.com/IVwymE0.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' /><img src='https://i.imgur.com/DCsLVLv.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/IVwymE0.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />   <img src='https://i.imgur.com/DCsLVLv.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
