@@ -36,12 +36,7 @@ Flix is a movies app that allows users to browse movies now playing in thereater
 - [x] User can tap a poster in the collection view to see a detail screen of that movie
 - [x] In the detail view, when the user taps the poster, a new screen is presented modally where they can view the trailer
 - [x] Customize the navigation bar
-- [x] List in any optionals you didn't finish from last week
 - [x] User sees a loading state while waiting for the poster images to load
-- [x] User sees an alert when there's a networking error
-- [x] Get the location of the movie theraters near the user and display the showing time for movie
-- [x] Allow the user to purchase moive ticket using app
-
 
 
 
