@@ -14,13 +14,18 @@ var allMovies: [Movie] = []
 
 class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate{
     
+    // MARK: Properties
     var movies: [Movie] = []
     var filteredMovie:[Movie]!
     var refreshControl: UIRefreshControl!
+    
+    // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    
+    // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
@@ -36,7 +41,7 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
         }
     }
     
-    //fetch now playing movies
+    // MARK: Action - fetch now playing movies
     func fetchMovies () {
         MovieApiManager().nowPlayingMovies { (movies: [Movie]?, error: Error?) in
             if let movies = movies {
@@ -49,12 +54,13 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
         }
     }
     
-    //code to count movies
+    // MARK: TabelView Cycle - number of movies
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
     }
     
-    //code to create cell and display data (Reactor)
+    
+    // MARK: TableView Cycle - code to create cell and display data (Reactor)
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         let backgroundView = UIView()
@@ -65,10 +71,12 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
         return cell
     }
     
-    //code to fetch movies when pull to refresh
+    
+    // MARK: code to fetch movies when pull to refresh
     @objc func didPullToRefresh(_ refreshControl: UIRefreshControl) {
         fetchMovies()
     }
+    
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         movies = searchText.isEmpty ? filteredMovie : filteredMovie.filter({ movie -> Bool in
@@ -94,14 +102,15 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
         allMovies = movies
     }
     
-    //code to display error message when network fails
+    // MARK: Display alert message when network fails
     func networkErrorAlert(title:String, message:String){
         let networkErrorAlert = UIAlertController(title: "Network Error", message: "The internet connection appears to be offline. Please try again later.", preferredStyle: UIAlertController.Style.alert)
         networkErrorAlert.addAction(UIAlertAction(title: "Try again", style: UIAlertAction.Style.default, handler: { (action) in self.fetchMovies()}))
         self.present(networkErrorAlert, animated: true, completion: nil)
     }
     
-    //code to load the low resolution image first and then switch to the high resolution image when complete for larger poster
+    
+    // MARK: Load the low resolution image first and then switch to the high resolution image when complete for larger poster
     func imageLoad (smallImgURL: String, largeImgURL: String, img:UIImageView) {
         let smallImgReq = URLRequest(url: URL(string: smallImgURL)!)
         let largeImgReq = URLRequest(url: URL(string: largeImgURL)!)
@@ -124,22 +133,32 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
         }
     }
     
-    //code to customize navigation bar
+    
+    // MARK: Customize navigation bar
     override func viewDidAppear(_ animated: Bool) {
+        
+        // set navigation bar style and tint color
         let nav = self.navigationController?.navigationBar
         nav?.barStyle = UIBarStyle.black
         nav?.tintColor = UIColor.yellow
+        
+        // set image location, size and content mode
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         imageView.contentMode = .scaleAspectFit
+        
+        // set navigationItemView with image and navigationItem title
         let image = UIImage(named: "camera-1")
         imageView.image = image
         navigationItem.titleView = imageView
         navigationItem.title = "Back to NowPlaying Movies"
     }
     
-    //code to connect with detailViewController
+    
+    // MARK: Perfom segue to connect with detailViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         let cell = sender as! UITableViewCell
+        
         if let indexPath = tableView.indexPath(for: cell){
             let movie = movies[indexPath.row]
             let detailViewController = segue.destination as! DetailViewController

@@ -10,14 +10,17 @@ import UIKit
 
 class PosterDetailViewController: UIViewController {
 
+    // MARK: IBOutlets
     @IBOutlet weak var backdropImageView: UIImageView!
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
-     
+    
+    // MARK: Properties
     var movie: Movie?
     
+    // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,14 +38,13 @@ class PosterDetailViewController: UIViewController {
         }
     }
     
+    // MARK: Perform Segue
    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let trailerViewController = segue.destination as! MovieTrailerViewController
         trailerViewController.movie = movie
     }
     
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }

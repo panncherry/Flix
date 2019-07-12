@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYa-Be-g0Z">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYa-Be-g0Z">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -119,7 +119,6 @@
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="414" id="8Lo-IY-Ast"/>
-                                    <constraint firstAttribute="height" constant="245.33000000000001" id="xHB-uj-3R2"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Z9N-iN-vb3">
@@ -147,8 +146,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Yg-im-tzS">
-                                <rect key="frame" x="0.0" y="383" width="414" height="304"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Yg-im-tzS">
+                                <rect key="frame" x="0.0" y="383" width="414" height="345"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -159,6 +158,7 @@
                             <constraint firstItem="pra-R4-Ef8" firstAttribute="height" secondItem="j7c-np-Vyw" secondAttribute="height" multiplier="0.3" id="7cQ-Kb-BiN"/>
                             <constraint firstAttribute="bottom" secondItem="4Yg-im-tzS" secondAttribute="bottom" constant="8" id="9NU-GB-TOT"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cbO-G8-QEE" secondAttribute="bottom" constant="8" id="A7m-pu-MAs"/>
+                            <constraint firstItem="4Yg-im-tzS" firstAttribute="top" secondItem="Z9N-iN-vb3" secondAttribute="bottom" constant="6.6699999999999999" id="Azr-bw-cZu"/>
                             <constraint firstItem="ZYZ-Gw-WEe" firstAttribute="top" secondItem="Uzi-SI-Z55" secondAttribute="bottom" constant="8" id="IIt-UO-8j4"/>
                             <constraint firstItem="pra-R4-Ef8" firstAttribute="top" secondItem="8Ze-UD-ZGt" secondAttribute="top" id="L8I-S6-VD6"/>
                             <constraint firstItem="8Ze-UD-ZGt" firstAttribute="trailing" secondItem="ZYZ-Gw-WEe" secondAttribute="trailing" constant="8" id="OsL-JC-pzn"/>
@@ -191,6 +191,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4CU-8m-t7h" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="oez-1b-jdf">
                     <connections>
+                        <action selector="didTappedScreen:" destination="VOg-e3-fex" id="Ccv-6f-G2c"/>
                         <segue destination="o5Z-tl-tSz" kind="show" id="TvA-W7-mFG"/>
                     </connections>
                 </tapGestureRecognizer>
@@ -323,7 +324,6 @@
                                 <rect key="frame" x="0.0" y="64.000000000000014" width="414" height="245.33333333333337"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="245.33000000000001" id="GjK-Uu-03U"/>
                                     <constraint firstAttribute="width" constant="414" id="k0I-oh-rux"/>
                                 </constraints>
                             </imageView>
@@ -401,7 +401,7 @@
         <!--Movie Trailer View Controller-->
         <scene sceneID="DNi-Jc-jCA">
             <objects>
-                <viewController id="o5Z-tl-tSz" customClass="MovieTrailerViewController" customModule="Flix" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TrailerVC" id="o5Z-tl-tSz" customClass="MovieTrailerViewController" customModule="Flix" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xob-dO-v8S">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -450,21 +450,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mMH-cA-N8o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="31" y="857"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="RwI-9x-f2y">
-            <objects>
-                <viewController id="6R9-Ft-9cw" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="TqG-i1-jlJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="gXS-4n-fcI"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8tO-kN-Yle" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3351" y="215"/>
         </scene>
     </scenes>
     <resources>

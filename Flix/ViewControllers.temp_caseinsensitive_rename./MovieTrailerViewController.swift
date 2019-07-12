@@ -11,11 +11,16 @@ import WebKit
 
 class MovieTrailerViewController: UIViewController, WKUIDelegate {
 
+    // MARK: IBOutlets
     @IBOutlet weak var movieTrailerWebView: WKWebView!
+    
+    // MARK: Properties
     var movie: Movie?
     
+    // MARK: Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let id = movie!.id
         let movieBaseURLString = "https://api.themoviedb.org/3/movie/"
         let movieBaseURLString2 = "/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US"
@@ -24,6 +29,7 @@ class MovieTrailerViewController: UIViewController, WKUIDelegate {
         let request = URLRequest(url: trailerURL!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
         let task = session.dataTask(with: request) { (data, response, error) in
+       
         if let error = error {
             print(error.localizedDescription)
         } else if let data = data {
@@ -31,6 +37,7 @@ class MovieTrailerViewController: UIViewController, WKUIDelegate {
             let trailers = dataDictionary["results"] as! [[String: Any]]
             let trailer = trailers[0]
             let key = trailer["key"] as! String
+            
             if let youtubeTrailerURL = URL(string: "https://www.youtube.com/watch?v=" + key) {
                 let trailerRequest = URLRequest(url: youtubeTrailerURL)
                 self.movieTrailerWebView.load(trailerRequest)
@@ -42,6 +49,5 @@ class MovieTrailerViewController: UIViewController, WKUIDelegate {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }

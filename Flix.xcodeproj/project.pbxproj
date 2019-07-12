@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		082D836E2166CE7700BDFAE3 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082D836D2166CE7700BDFAE3 /* Movie.swift */; };
 		08613FFC216D59B5007CCCB3 /* MovieApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08613FFB216D59B5007CCCB3 /* MovieApiManager.swift */; };
+		087F856922D901990058330C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 087F856822D901990058330C /* WebKit.framework */; };
 		0897158D2148835B0060A081 /* PosterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0897158C2148835B0060A081 /* PosterCell.swift */; };
 		0897158F214883E90060A081 /* SuperheroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0897158E214883E90060A081 /* SuperheroViewController.swift */; };
 		08C59B3C2148C8E5004CDC07 /* PosterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C59B3B2148C8E5004CDC07 /* PosterDetailViewController.swift */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		082D836D2166CE7700BDFAE3 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		08613FFB216D59B5007CCCB3 /* MovieApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieApiManager.swift; sourceTree = "<group>"; };
+		087F856822D901990058330C /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		0897158C2148835B0060A081 /* PosterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCell.swift; sourceTree = "<group>"; };
 		0897158E214883E90060A081 /* SuperheroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperheroViewController.swift; sourceTree = "<group>"; };
 		08C59B3B2148C8E5004CDC07 /* PosterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterDetailViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				087F856922D901990058330C /* WebKit.framework in Frameworks */,
 				56411C62EA583B26392A4992 /* Pods_Flix.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -121,6 +124,15 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		08CDDE05229EE9EF00F592BF /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				08F01E472134EF990038AA2C /* Main.storyboard */,
+				08F01E4C2134EF9B0038AA2C /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
 		08CF306C21486D9400B56CDC /* viewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,7 +142,8 @@
 				08C59B3B2148C8E5004CDC07 /* PosterDetailViewController.swift */,
 				08DE52EF214EDFEB00AE45E2 /* MovieTrailerViewController.swift */,
 			);
-			path = viewControllers;
+			name = viewControllers;
+			path = ViewControllers.temp_caseinsensitive_rename.;
 			sourceTree = "<group>";
 		};
 		08CF306D21486DB400B56CDC /* Views */ = {
@@ -171,10 +184,9 @@
 				082D836C2166CE4A00BDFAE3 /* Models */,
 				08CF306D21486DB400B56CDC /* Views */,
 				08CF306C21486D9400B56CDC /* viewControllers */,
+				08CDDE05229EE9EF00F592BF /* Storyboards */,
 				08F01E432134EF990038AA2C /* AppDelegate.swift */,
-				08F01E472134EF990038AA2C /* Main.storyboard */,
 				08F01E4A2134EF9B0038AA2C /* Assets.xcassets */,
-				08F01E4C2134EF9B0038AA2C /* LaunchScreen.storyboard */,
 				08F01E4F2134EF9B0038AA2C /* Info.plist */,
 			);
 			path = Flix;
@@ -214,6 +226,7 @@
 		E9C79CA5BC453C38F91F1C60 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				087F856822D901990058330C /* WebKit.framework */,
 				60C821995DEC32172296239C /* Pods_Flix.framework */,
 				C280354C642461B10D61764C /* Pods_FlixTests.framework */,
 				72F84F49931DC51B2D25B13E /* Pods_FlixUITests.framework */,
@@ -293,16 +306,16 @@
 				TargetAttributes = {
 					08F01E3F2134EF990038AA2C = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 					};
 					08F01E532134EF9B0038AA2C = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						TestTargetID = 08F01E3F2134EF990038AA2C;
 					};
 					08F01E5E2134EF9C0038AA2C = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						TestTargetID = 08F01E3F2134EF990038AA2C;
 					};
 				};
@@ -630,7 +643,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = RnR.Flix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -649,7 +662,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = RnR.Flix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -670,7 +683,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = RnR.FlixTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Flix.app/Flix";
 			};
@@ -692,7 +705,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = RnR.FlixTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Flix.app/Flix";
 			};
@@ -713,7 +726,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = RnR.FlixUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Flix;
 			};
@@ -734,7 +747,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = RnR.FlixUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Flix;
 			};
