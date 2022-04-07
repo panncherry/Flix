@@ -62,7 +62,7 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
     
     // MARK: TableView Cycle - code to create cell and display data (Reactor)
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! OLDMovieCell
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.orange
         cell.selectedBackgroundView = backgroundView

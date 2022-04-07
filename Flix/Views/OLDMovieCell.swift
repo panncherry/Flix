@@ -1,5 +1,5 @@
 //
-//  MovieCell.swift
+//  OLDMovieCell.swift
 //  Flix
 //
 //  Created by Pann Cherry on 9/4/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieCell: UITableViewCell {
+class OLDMovieCell: UITableViewCell {
     
     // MARK: IBOutlets
     @IBOutlet weak var titleLabel: UILabel!

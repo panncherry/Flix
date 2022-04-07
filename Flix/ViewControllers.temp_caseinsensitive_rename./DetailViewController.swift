@@ -17,11 +17,9 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
     
-    
     // MARK: Properties
     var movie: Movie?
-    
-    
+
     // MARK: Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
