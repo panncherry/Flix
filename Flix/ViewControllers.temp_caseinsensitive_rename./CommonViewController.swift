@@ -48,6 +48,24 @@ class CommonViewController: UIViewController {
         self.navigationItem.largeTitleDisplayMode = .never
     }
 
+    @objc func back() {
+        self.navigationController?.popViewController(animated: true)
+    }
+
+    func leftNavigationBarCustomBackButton(imageName: String = "Back", selector: Selector = #selector(back)) {
+        self.extendedLayoutIncludesOpaqueBars = true
+        self.navigationController?.navigationBar.barTintColor = .white
+        self.navigationController?.navigationBar.tintColor = .black
+
+        let button = UIButton(type: UIButton.ButtonType.custom)
+        let origImage = UIImage(named: imageName)
+        let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
+        button.setImage(tintedImage, for: .normal)
+        button.addTarget(self, action: selector, for: .touchUpInside)
+        let barButton = UIBarButtonItem(customView: button)
+        self.navigationItem.leftBarButtonItems = [barButton]
+    }
+
     func networkErrorAlert(title:String, message:String, completionHandler: @escaping () -> Void){
         let networkErrorAlert = UIAlertController(title: "Network Error", message: "The internet connection appears to be offline. Please try again later.", preferredStyle: UIAlertController.Style.alert)
         networkErrorAlert.addAction(UIAlertAction(title: "Try again", style: UIAlertAction.Style.default, handler: { (action) in
