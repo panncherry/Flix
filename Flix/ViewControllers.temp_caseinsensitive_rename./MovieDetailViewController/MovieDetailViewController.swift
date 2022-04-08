@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import AVKit
+import AVFoundation
 
 class MovieDetailViewController: CommonViewController {
 
     // IBOutlets
+    @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var movieTitleLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
@@ -40,19 +43,24 @@ class MovieDetailViewController: CommonViewController {
         self.leftNavigationBarCustomBackButton()
     }
 
+    @IBAction func playButtonHit(_ sender: Any) {
+        let viewController = TrailerViewController(movie: self.movie)
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+
     private func configure() {
         movieTitleLabel.text = movie.title
         releaseDateLabel.text = movie.release_date
-        overviewLabel.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"//movie.overview
+        overviewLabel.text = movie.overview
 
         let backdropPathString = movie.backdropPath
         let posterPathString = movie.posterPath
         let baseURLString = "https://image.tmdb.org/t/p/w500"
 
         let backdropURL = URL(string: baseURLString + backdropPathString)!
-        backdropImageView.af_setImage(withURL: backdropURL)
+        backdropImageView.setImageWith(backdropURL)
 
         let posterPathURL = URL(string: baseURLString + posterPathString)!
-        posterImageView.af_setImage(withURL: posterPathURL)
+        posterImageView.setImageWith(posterPathURL)
     }
 }

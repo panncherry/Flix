@@ -422,7 +422,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="movieTrailerWebView" destination="dPe-Tu-zNw" id="EGI-Ov-Ez5"/>
+                        <outlet property="webView" destination="dPe-Tu-zNw" id="rBR-8M-Z47"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gxf-j3-BMf" userLabel="First Responder" sceneMemberID="firstResponder"/>

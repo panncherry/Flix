@@ -31,6 +31,8 @@ class Movie {
             let movie = Movie(dictionary: dictionary)
             movies.append(movie)
         }
-        return movies
+        return movies.sorted { movie1, movie2 in
+            return movie1.release_date > movie2.release_date
+        }
     }
 }

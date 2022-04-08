@@ -13,6 +13,7 @@
                 <outlet property="backdropImageView" destination="5HY-in-sSk" id="cmI-05-KLF"/>
                 <outlet property="movieTitleLabel" destination="Wp6-QR-RXt" id="NcW-V9-tmV"/>
                 <outlet property="overviewLabel" destination="SYe-f8-Hge" id="gry-Ow-XVT"/>
+                <outlet property="playButton" destination="rsL-Nf-YXC" id="y7t-Yd-nHV"/>
                 <outlet property="posterImageView" destination="aSp-5r-BCO" id="yTu-g0-LPT"/>
                 <outlet property="releaseDateLabel" destination="Lfs-nR-y6w" id="irS-eu-0pU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -84,6 +85,18 @@
                                         <constraint firstItem="rEm-BS-LIv" firstAttribute="top" secondItem="ceh-tf-3Yx" secondAttribute="top" constant="8" id="zZX-4I-TJe"/>
                                     </constraints>
                                 </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rsL-Nf-YXC">
+                                    <rect key="frame" x="174.5" y="132" width="65" height="65"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="65" id="Fbn-Tq-2NJ"/>
+                                        <constraint firstAttribute="height" constant="65" id="RP5-Y7-f4r"/>
+                                    </constraints>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="play-button"/>
+                                    <connections>
+                                        <action selector="playButtonHit:" destination="-1" eventType="touchUpInside" id="DtA-EP-Yna"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -93,6 +106,8 @@
                                 <constraint firstItem="5HY-in-sSk" firstAttribute="leading" secondItem="dHe-2W-CiL" secondAttribute="leading" id="JHi-LE-ue0"/>
                                 <constraint firstItem="aSp-5r-BCO" firstAttribute="height" secondItem="5HY-in-sSk" secondAttribute="height" multiplier="0.35" id="MgT-4L-RRR"/>
                                 <constraint firstItem="Lfs-nR-y6w" firstAttribute="top" secondItem="Wp6-QR-RXt" secondAttribute="bottom" constant="8" id="OoU-hu-Swl"/>
+                                <constraint firstItem="rsL-Nf-YXC" firstAttribute="centerX" secondItem="5HY-in-sSk" secondAttribute="centerX" id="V8a-qV-n46"/>
+                                <constraint firstItem="rsL-Nf-YXC" firstAttribute="centerY" secondItem="5HY-in-sSk" secondAttribute="centerY" id="f2B-qK-OB7"/>
                                 <constraint firstAttribute="trailing" secondItem="ceh-tf-3Yx" secondAttribute="trailing" id="fsj-lZ-FDZ"/>
                                 <constraint firstAttribute="trailing" secondItem="Lfs-nR-y6w" secondAttribute="trailing" constant="8" id="h0W-Sn-ikg"/>
                                 <constraint firstItem="Lfs-nR-y6w" firstAttribute="leading" secondItem="aSp-5r-BCO" secondAttribute="trailing" constant="8" id="hIL-X6-Qxt"/>
@@ -130,6 +145,7 @@
         </view>
     </objects>
     <resources>
+        <image name="play-button" width="64" height="64"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

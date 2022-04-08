@@ -9,11 +9,12 @@
 import Foundation
 
 class MovieApiManager {
-    
-    static let baseUrl = "https://api.themoviedb.org/3/movie/"
-    static let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
+
     var session: URLSession
-    
+    static let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
+    static let baseUrl = "https://api.themoviedb.org/3/movie/"
+    static let movieTrailerPath = "/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US"
+
     init() {
         session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
     }
@@ -23,7 +24,7 @@ class MovieApiManager {
         let url = URL(string: MovieApiManager.baseUrl + "now_playing?api_key=\(MovieApiManager.apiKey)")!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let task = session.dataTask(with: request) { (data, response, error) in
-            // This will run when the network request returns
+
             if let data = data {
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 let movieDictionaries = dataDictionary["results"] as! [[String: Any]]
@@ -56,4 +57,5 @@ class MovieApiManager {
         }
         task.resume()
     }
+
 }

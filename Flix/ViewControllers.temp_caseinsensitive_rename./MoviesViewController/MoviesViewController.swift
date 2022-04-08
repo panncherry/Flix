@@ -124,4 +124,23 @@ extension MoviesViewController: UISearchBarDelegate {
         searchBar.searchTextField.endEditing(true)
         searchBar.searchTextField.resignFirstResponder()
     }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        movies = searchText.isEmpty ? filteredMovie : filteredMovie.filter({ movie -> Bool in
+            let dataString = movie.title
+            return dataString.lowercased().range(of: searchText.lowercased()) != nil
+        })
+        tableView.reloadData()
+    }
+
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.searchBar.showsCancelButton = true
+        fetchMovies()
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+    }
 }
