@@ -31,42 +31,19 @@ class MoviesViewController: CommonViewController {
         self.addCutsomLeftNavigationTitle(title: "Movies")
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        allMovies = movies
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.fetchMovies()
     }
 
     @objc func fetchMovies () {
-        MovieApiManager().nowPlayingMovies { (movies: [Movie]?, error: Error?) in
-            if let movies = movies {
-                self.movies = movies
-                self.filteredMovie = movies
-                self.tableView.reloadData()
-                self.refreshControl.endRefreshing()
-            }
+        NetworkManager.sharedNetworkManager.requestMovies(moviesURL: NetworkManager.nowPlayingURL) {response in
+            guard let movies = response.movies else { return }
+            self.movies = movies
+            self.filteredMovie = movies
+            self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
         }
-    }
-
-    // MARK: Load the low resolution image first and then switch to the high resolution image when complete for larger poster
-    func imageLoad (smallImgURL: String, largeImgURL: String, img:UIImageView) {
-        let smallImgReq = URLRequest(url: URL(string: smallImgURL)!)
-        let largeImgReq = URLRequest(url: URL(string: largeImgURL)!)
-        img.setImageWith(smallImgReq, placeholderImage: #imageLiteral(resourceName: "PlaceHolderImg"),
-                         success: { (smallImgReq, smallImgResponse, smallImg) -> Void in
-                            img.alpha = 0.0
-                            img.image = smallImg
-
-                            UIView.animate(withDuration: 0.6, animations: {()-> Void in
-                                img.alpha = 1.0
-                            }, completion: { (success) -> Void in
-                                img.setImageWith(largeImgReq, placeholderImage: smallImg,
-                                                 success: { (largeImgReq, largeImgResponse, largeImg) in
-                                                    img.image = largeImg
-                                }, failure: { (request, response, error) in
-
-                                })
-                            })
-        }) { (request, response, error) -> Void in }
     }
 
     private func addRefreshControl() {

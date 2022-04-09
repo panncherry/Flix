@@ -25,7 +25,7 @@ class FlixTabBarController: UITabBarController, UITabBarControllerDelegate {
         self.delegate = self
         self.viewControllers = [
             UINavigationController(rootViewController: MoviesViewController()),
-            UINavigationController(rootViewController: PosterDetailViewController())
+            UINavigationController(rootViewController: SuperheroMoviesViewController())
         ]
 
         self.setUpTabbarAppearance()
