@@ -1,5 +1,5 @@
 //
-//  SuperheroMoviesViewController.swift
+//  PopularMoviesViewController.swift
 //  Flix
 //
 //  Created by Pann Cherry on 4/7/22.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SuperheroMoviesViewController: CommonViewController {
+class PopularMoviesViewController: CommonViewController {
 
     // IBOutlets
     @IBOutlet weak var searchBar: UISearchBar!
@@ -25,7 +25,7 @@ class SuperheroMoviesViewController: CommonViewController {
         self.addRefreshControl()
         self.searchBar.delegate = self
         self.initializeCollectionView()
-        self.addCutsomLeftNavigationTitle(title: "Superhero Movies")
+        self.addCutsomLeftNavigationTitle(title: "Popular Movies")
         collectionView.reloadData()
     }
 
@@ -36,7 +36,7 @@ class SuperheroMoviesViewController: CommonViewController {
 
     // Helpers
     @objc func fetchMovies () {
-        NetworkManager.sharedNetworkManager.requestMovies(moviesURL: NetworkManager.popularMoviesURL) { response in
+        NetworkManager.sharedNetworkManager.requestMovies(moviesURL: APIManager.popularMoviesURL) { response in
             guard let movies = response.movies else { return }
 
             self.movies = movies
@@ -53,7 +53,7 @@ class SuperheroMoviesViewController: CommonViewController {
 }
 
 // MARK: UICollectionView DataSource
-extension SuperheroMoviesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension PopularMoviesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 
     internal func initializeCollectionView() {
         collectionView.delegate = self
@@ -96,7 +96,7 @@ extension SuperheroMoviesViewController: UICollectionViewDelegate, UICollectionV
 
 
 // MARK: UICollectionView Flow Layout
-extension SuperheroMoviesViewController: UICollectionViewDelegateFlowLayout {
+extension PopularMoviesViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 1.0, left: 8.0, bottom: 1.0, right: 8.0)
@@ -111,7 +111,7 @@ extension SuperheroMoviesViewController: UICollectionViewDelegateFlowLayout {
 
 
 // MARK: Search Bar Delegate
-extension SuperheroMoviesViewController: UISearchBarDelegate {
+extension PopularMoviesViewController: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         movies = searchText.isEmpty ? filteredMovie : filteredMovie.filter({ movie -> Bool in

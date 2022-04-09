@@ -13,8 +13,8 @@ extension UIImageView {
     // Load the low resolution image first and then switch to the high resolution image when complete for larger poster
     func loadImage(for movie: Movie) {
 
-        let smallImageURLString = NetworkManager.smallPosterPath + movie.posterPath
-        let largeImageURLString = NetworkManager.largePosterPath + movie.posterPath
+        let smallImageURLString = APIManager.smallPosterPath + movie.posterPath
+        let largeImageURLString = APIManager.largePosterPath + movie.posterPath
 
         let smallImageRequest = URLRequest(url: URL(string: smallImageURLString)!)
         let largeImageRequest = URLRequest(url: URL(string: largeImageURLString)!)

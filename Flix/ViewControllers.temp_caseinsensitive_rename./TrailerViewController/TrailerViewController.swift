@@ -30,7 +30,7 @@ class TrailerViewController: UIViewController, WKUIDelegate {
     }
 
     private func playVideo() {
-        let trailerURL = URL(string: NetworkManager.baseUrl + movie.id.stringValue + NetworkManager.movieTrailerPath)
+        let trailerURL = URL(string: APIManager.baseUrl + movie.id.stringValue + APIManager.movieTrailerPath)
         let request = URLRequest(url: trailerURL!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
 

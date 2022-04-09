@@ -18,16 +18,6 @@ class NetworkManager {
     var session: URLSession
     static var sharedNetworkManager = NetworkManager()
 
-    static let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-    static let baseUrl = "https://api.themoviedb.org/3/movie/"
-
-    static let smallPosterPath = "https://image.tmdb.org/t/p/w45"
-    static let largePosterPath = "https://image.tmdb.org/t/p/original"
-    static let movieTrailerPath = "/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US"
-
-    static let nowPlayingURL = URL(string: NetworkManager.baseUrl + "now_playing?api_key=\(NetworkManager.apiKey)")!
-    static let popularMoviesURL = URL(string: NetworkManager.baseUrl + "popular?api_key=\(NetworkManager.apiKey)")!
-
     init() {
         session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
     }

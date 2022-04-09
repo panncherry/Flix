@@ -37,7 +37,7 @@ class MoviesViewController: CommonViewController {
     }
 
     @objc func fetchMovies () {
-        NetworkManager.sharedNetworkManager.requestMovies(moviesURL: NetworkManager.nowPlayingURL) {response in
+        NetworkManager.sharedNetworkManager.requestMovies(moviesURL: APIManager.nowPlayingURL) {response in
             guard let movies = response.movies else { return }
             self.movies = movies
             self.filteredMovie = movies

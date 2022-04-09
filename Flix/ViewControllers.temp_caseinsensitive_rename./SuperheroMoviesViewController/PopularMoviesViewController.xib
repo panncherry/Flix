@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SuperheroMoviesViewController" customModule="Flix" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PopularMoviesViewController" customModule="Flix" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="aYP-eD-BeB" id="q4V-BO-ACh"/>
                 <outlet property="searchBar" destination="l1Q-bh-Shj" id="rgX-PI-FAa"/>
