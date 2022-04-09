@@ -1,5 +1,5 @@
 //
-//  UIImageViewExtensions.swift
+//  UIImageView+Extensions.swift
 //  Flix
 //
 //  Created by Pann Cherry on 4/8/22.

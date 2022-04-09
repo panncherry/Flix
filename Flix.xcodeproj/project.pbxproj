@@ -15,8 +15,11 @@
 		0859DB7527FFDF83000E7812 /* MoviePosterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0859DB7327FFDF83000E7812 /* MoviePosterCollectionViewCell.swift */; };
 		0859DB7627FFDF83000E7812 /* MoviePosterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0859DB7427FFDF83000E7812 /* MoviePosterCollectionViewCell.xib */; };
 		0859DB7828011111000E7812 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0859DB7728011111000E7812 /* Genre.swift */; };
-		0859DB7D28013443000E7812 /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0859DB7C28013443000E7812 /* UIImageViewExtensions.swift */; };
+		0859DB7D28013443000E7812 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0859DB7C28013443000E7812 /* UIImageView+Extensions.swift */; };
 		0859DB8228022E7A000E7812 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0859DB8128022E7A000E7812 /* APIManager.swift */; };
+		0859DB8528023735000E7812 /* PillSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0859DB8428023735000E7812 /* PillSegmentedControl.swift */; };
+		0859DB8728023877000E7812 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0859DB8628023877000E7812 /* UIColor+Extension.swift */; };
+		0859DB89280238B8000E7812 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0859DB88280238B8000E7812 /* UIImage+Extension.swift */; };
 		08613FFC216D59B5007CCCB3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08613FFB216D59B5007CCCB3 /* NetworkManager.swift */; };
 		087F856922D901990058330C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 087F856822D901990058330C /* WebKit.framework */; };
 		08A424EE27FE1F8B000AF521 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A424EC27FE1F8B000AF521 /* MovieTableViewCell.swift */; };
@@ -64,8 +67,11 @@
 		0859DB7327FFDF83000E7812 /* MoviePosterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePosterCollectionViewCell.swift; sourceTree = "<group>"; };
 		0859DB7427FFDF83000E7812 /* MoviePosterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoviePosterCollectionViewCell.xib; sourceTree = "<group>"; };
 		0859DB7728011111000E7812 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
-		0859DB7C28013443000E7812 /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
+		0859DB7C28013443000E7812 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		0859DB8128022E7A000E7812 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		0859DB8428023735000E7812 /* PillSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillSegmentedControl.swift; sourceTree = "<group>"; };
+		0859DB8628023877000E7812 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		0859DB88280238B8000E7812 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		08613FFB216D59B5007CCCB3 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		087F856822D901990058330C /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		08A424EC27FE1F8B000AF521 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
@@ -160,7 +166,9 @@
 		0859DB7928013406000E7812 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				0859DB7C28013443000E7812 /* UIImageViewExtensions.swift */,
+				0859DB8628023877000E7812 /* UIColor+Extension.swift */,
+				0859DB88280238B8000E7812 /* UIImage+Extension.swift */,
+				0859DB7C28013443000E7812 /* UIImageView+Extensions.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -189,6 +197,14 @@
 				08613FFB216D59B5007CCCB3 /* NetworkManager.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		0859DB832802370E000E7812 /* PillSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				0859DB8428023735000E7812 /* PillSegmentedControl.swift */,
+			);
+			path = PillSegmentedControl;
 			sourceTree = "<group>";
 		};
 		08613FFA216D5998007CCCB3 /* API */ = {
@@ -273,6 +289,7 @@
 				08CF306C21486D9400B56CDC /* ViewControllers */,
 				0859DB7928013406000E7812 /* Shared */,
 				08CDDE05229EE9EF00F592BF /* Storyboards */,
+				0859DB832802370E000E7812 /* PillSegmentedControl */,
 				0859DB7E2801356F000E7812 /* Resources */,
 			);
 			path = Flix;
@@ -543,11 +560,14 @@
 				082D836E2166CE7700BDFAE3 /* Movie.swift in Sources */,
 				0859DB7527FFDF83000E7812 /* MoviePosterCollectionViewCell.swift in Sources */,
 				08A424F527FE232B000AF521 /* CommonViewController.swift in Sources */,
+				0859DB8528023735000E7812 /* PillSegmentedControl.swift in Sources */,
 				08F01E442134EF990038AA2C /* AppDelegate.swift in Sources */,
 				0859DB8228022E7A000E7812 /* APIManager.swift in Sources */,
-				0859DB7D28013443000E7812 /* UIImageViewExtensions.swift in Sources */,
+				0859DB7D28013443000E7812 /* UIImageView+Extensions.swift in Sources */,
 				0859DB6B27FFD913000E7812 /* TrailerViewController.swift in Sources */,
 				08613FFC216D59B5007CCCB3 /* NetworkManager.swift in Sources */,
+				0859DB8728023877000E7812 /* UIColor+Extension.swift in Sources */,
+				0859DB89280238B8000E7812 /* UIImage+Extension.swift in Sources */,
 				08A424FC27FE26DE000AF521 /* FlixTabBarController.swift in Sources */,
 				08A424EE27FE1F8B000AF521 /* MovieTableViewCell.swift in Sources */,
 				08A424F227FE223E000AF521 /* MoviesViewController.swift in Sources */,
