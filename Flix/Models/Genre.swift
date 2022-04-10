@@ -8,16 +8,17 @@
 
 struct Genre {
     var id: Int
-    var type: String
-    var genreTypes: GenreTypes? { return GenreTypes(rawValue: self.id) }
+    var type: GenreType?
 
-    init(id: Int, type: String) {
+    init(id: Int) {
         self.id = id
-        self.type = type
+        self.type = GenreType(rawValue: id)
     }
 }
 
-enum GenreTypes: Int {
+
+enum GenreType: Int {
+    case all = 0
     case adventure = 12
     case animation = 16
     case action = 28
@@ -40,6 +41,9 @@ enum GenreTypes: Int {
 
     init?(rawValue: Int) {
         switch (rawValue) {
+        case 0:
+            self = .all
+            
         case 12:
             self = .adventure
 

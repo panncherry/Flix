@@ -24,7 +24,7 @@ class FlixTabBarController: UITabBarController, UITabBarControllerDelegate {
 
         self.delegate = self
         self.viewControllers = [
-            UINavigationController(rootViewController: MoviesViewController()),
+            UINavigationController(rootViewController: NowPlayingMoviesViewController()),
             UINavigationController(rootViewController: PopularMoviesViewController())
         ]
 

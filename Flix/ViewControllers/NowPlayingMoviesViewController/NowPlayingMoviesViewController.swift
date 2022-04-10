@@ -1,8 +1,8 @@
 //
-//  MoviesViewController.swift
+//  NowPlayingMoviesViewController.swift
 //  Flix
 //
-//  Created by Pann Cherry on 4/6/22.
+//  Created by Pann Cherry on 4/9/22.
 //  Copyright © 2022 Pann Cherry. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import UIKit
 import AFNetworking
 import AlamofireImage
 
-class MoviesViewController: CommonViewController {
+class NowPlayingMoviesViewController: CommonViewController {
 
     // Properties
     var movies: [Movie] = []
@@ -60,7 +60,7 @@ class MoviesViewController: CommonViewController {
 
 
 // MARK: UITableView Delegate
-extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
+extension NowPlayingMoviesViewController: UITableViewDelegate, UITableViewDataSource {
 
     private func initializeTableView() {
         tableView.delegate = self
@@ -94,7 +94,7 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
 
 
 // MARK: UISearchBar Delegate
-extension MoviesViewController: UISearchBarDelegate {
+extension NowPlayingMoviesViewController: UISearchBarDelegate {
 
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         self.view.endEditing(true)

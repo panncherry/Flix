@@ -76,13 +76,13 @@ class PillSegmentedControl: UISegmentedControl {
 
     func setFontStyle() {
         self.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .light), NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
-        self.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .light), NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
+        self.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .semibold), NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
     }
 
     func setSegmentColors() {
         self.setBackgroundImage(UIImage(color: .white, size: CGSize(width: 100, height: 30))?.rounded(radius: 12), for: .normal, barMetrics: .default)
-        self.setBackgroundImage(UIImage(color: UIColor.lightGray.withAlphaComponent(0.5), size: CGSize(width: 100, height: 30))?.rounded(radius: 12), for: .selected, barMetrics: .default)
-        self.setBackgroundImage(UIImage(color: UIColor.lightGray.withAlphaComponent(0.5), size: CGSize(width: 100, height: 30))?.rounded(radius: 12), for: .highlighted, barMetrics: .default)
+        self.setBackgroundImage(UIImage(color: UIColor.lightGray.withAlphaComponent(0.3), size: CGSize(width: 100, height: 30))?.rounded(radius: 12), for: .selected, barMetrics: .default)
+        self.setBackgroundImage(UIImage(color: UIColor.lightGray.withAlphaComponent(0.3), size: CGSize(width: 100, height: 30))?.rounded(radius: 12), for: .highlighted, barMetrics: .default)
 
         let dividerImage = UIColor.clear.image(size: CGSize(width: 8, height: 30))
         self.setDividerImage(dividerImage, forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)

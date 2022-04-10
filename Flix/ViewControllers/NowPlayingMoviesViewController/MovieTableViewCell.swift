@@ -9,14 +9,14 @@
 import UIKit
 
 class MovieTableViewCell: UITableViewCell {
-    
+
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var posterImageView: UIImageView!
-    
+
     static let nibName = "MovieTableViewCell"
     static let identifier = "MovieTableViewCell"
-    
+
     var movie: Movie! {
         willSet(movie){
             self.titleLabel.text = movie.title
@@ -24,22 +24,22 @@ class MovieTableViewCell: UITableViewCell {
             self.posterImageView.loadImage(for: movie)
         }
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         self.titleLabel.text = nil
         self.overviewLabel.text = nil
         self.posterImageView.image = nil
     }
-    
+
     func configure(movie: Movie) {
         self.movie = movie
     }

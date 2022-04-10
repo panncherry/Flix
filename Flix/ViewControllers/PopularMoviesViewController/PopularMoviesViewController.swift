@@ -12,12 +12,40 @@ class PopularMoviesViewController: CommonViewController {
 
     // IBOutlets
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var segmentedControl: PillSegmentedControl!
     @IBOutlet weak var collectionView: UICollectionView!
 
     // Properties
     var movies: [Movie] = []
     var filteredMovie:[Movie] = []
+    var selectedGenre: GenreType? = .all
     var refreshControl: UIRefreshControl = UIRefreshControl()
+
+    var selectedSegmentIndex: Int = 0 {
+        didSet {
+            if self.selectedSegmentIndex == 0 { self.selectedGenre = .all }
+            if self.selectedSegmentIndex == 1 { self.selectedGenre = .adventure }
+            if self.selectedSegmentIndex == 2 { self.selectedGenre = .animation }
+            if self.selectedSegmentIndex == 3 { self.selectedGenre = .action }
+            if self.selectedSegmentIndex == 4 { self.selectedGenre = .comedy }
+            if self.selectedSegmentIndex == 5 { self.selectedGenre = .crime }
+            if self.selectedSegmentIndex == 5 { self.selectedGenre = .documentary }
+            if self.selectedSegmentIndex == 7 { self.selectedGenre = .drama }
+            if self.selectedSegmentIndex == 8 { self.selectedGenre = .family }
+            if self.selectedSegmentIndex == 9 { self.selectedGenre = .fantasy }
+            if self.selectedSegmentIndex == 10 { self.selectedGenre = .history }
+            if self.selectedSegmentIndex == 11 { self.selectedGenre = .horror }
+            if self.selectedSegmentIndex == 12 { self.selectedGenre = .music }
+            if self.selectedSegmentIndex == 13 { self.selectedGenre = .mystery }
+            if self.selectedSegmentIndex == 14 { self.selectedGenre = .romance }
+            if self.selectedSegmentIndex == 15 { self.selectedGenre = .scienceFiction }
+            if self.selectedSegmentIndex == 16 { self.selectedGenre = .tvMovie }
+            if self.selectedSegmentIndex == 17 { self.selectedGenre = .thriller }
+            if self.selectedSegmentIndex == 18 { self.selectedGenre = .war }
+            if self.selectedSegmentIndex == 19 { self.selectedGenre = .western }
+            self.fetchMovies()
+        }
+    }
 
     // Life Cycles
     override func viewDidLoad() {
@@ -37,18 +65,45 @@ class PopularMoviesViewController: CommonViewController {
     // Helpers
     @objc func fetchMovies () {
         NetworkManager.sharedNetworkManager.requestMovies(moviesURL: APIManager.popularMoviesURL) { response in
+
             guard let movies = response.movies else { return }
 
-            self.movies = movies
-            self.filteredMovie = movies
-            self.collectionView.reloadData()
-            self.refreshControl.endRefreshing()
+            guard let selectedGenre = self.selectedGenre, selectedGenre != .all else {
+                self.updateMovies(movies)
+                return
+            }
+
+            var selectedMovies: [Movie] = []
+            for movie in movies {
+                for id in movie.genreIds {
+                    if id.type == selectedGenre {
+                        selectedMovies.append(movie)
+                    }
+                }
+            }
+            self.updateMovies(selectedMovies)
+            return
         }
+    }
+
+    internal func updateMovies(_ movies: [Movie]) {
+        self.movies = movies
+        self.filteredMovie = movies
+        self.collectionView.reloadData()
+        self.refreshControl.endRefreshing()
     }
 
     func addRefreshControl(){
         collectionView.insertSubview(refreshControl, at: 0)
         refreshControl.addTarget(self, action: #selector(self.fetchMovies), for: .valueChanged)
+    }
+
+    @IBAction func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+        self.selectedSegmentIndex = sender.selectedSegmentIndex
+
+        searchBar.text = ""
+        searchBar.showsCancelButton = false
+        searchBar.resignFirstResponder()
     }
 }
 

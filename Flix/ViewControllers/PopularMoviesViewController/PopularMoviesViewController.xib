@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PopularMoviesViewController" customModule="Flix" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionView" destination="aYP-eD-BeB" id="q4V-BO-ACh"/>
+                <outlet property="searchBar" destination="l1Q-bh-Shj" id="rgX-PI-FAa"/>
+                <outlet property="segmentedControl" destination="uGI-3L-AcN" id="rfc-m1-hhX"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search superhero movies ..." translatesAutoresizingMaskIntoConstraints="NO" id="l1Q-bh-Shj">
+                    <rect key="frame" x="0.0" y="44" width="414" height="51"/>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="aYP-eD-BeB">
+                    <rect key="frame" x="0.0" y="135" width="414" height="727"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="WJW-lY-lOF">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUg-Kr-xav">
+                    <rect key="frame" x="0.0" y="95" width="414" height="32"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3eB-nM-cSZ" userLabel="ContentView">
+                            <rect key="frame" x="0.0" y="0.0" width="1504" height="32"/>
+                            <subviews>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="uGI-3L-AcN" customClass="PillSegmentedControl" customModule="Flix" customModuleProvider="target">
+                                    <rect key="frame" x="20" y="0.0" width="1464" height="33"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="32" id="gVD-NF-CjP"/>
+                                    </constraints>
+                                    <segments>
+                                        <segment title="All" width="50"/>
+                                        <segment title="Advanture" width="94"/>
+                                        <segment title="Animation" width="94"/>
+                                        <segment title="Action" width="65"/>
+                                        <segment title="Comdey" width="69"/>
+                                        <segment title="Crime" width="55"/>
+                                        <segment title="Documentary" width="104"/>
+                                        <segment title="Drama" width="58"/>
+                                        <segment title="Family" width="58"/>
+                                        <segment title="Fantasy" width="68"/>
+                                        <segment title="History" width="65"/>
+                                        <segment title="Horror" width="65"/>
+                                        <segment title="Music" width="65"/>
+                                        <segment title="Mystery" width="75"/>
+                                        <segment title="Romance" width="80"/>
+                                        <segment title="Science Fiction" width="120"/>
+                                        <segment title="TV Movie" width="70"/>
+                                        <segment title="Thriller" width="60"/>
+                                        <segment title="War" width="45"/>
+                                        <segment title="Westren" width="85"/>
+                                    </segments>
+                                    <connections>
+                                        <action selector="segmentedControlValueChanged:" destination="-1" eventType="valueChanged" id="JvA-yK-Yor"/>
+                                    </connections>
+                                </segmentedControl>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="uGI-3L-AcN" firstAttribute="leading" secondItem="3eB-nM-cSZ" secondAttribute="leading" constant="20" id="KeM-up-f9z"/>
+                                <constraint firstItem="uGI-3L-AcN" firstAttribute="top" secondItem="3eB-nM-cSZ" secondAttribute="top" id="NNQ-0T-MhB"/>
+                                <constraint firstAttribute="height" constant="32" id="ZAC-wF-TC4"/>
+                                <constraint firstAttribute="trailing" secondItem="uGI-3L-AcN" secondAttribute="trailing" constant="20" id="vhf-ab-n3B"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="32" id="09D-9g-udY"/>
+                        <constraint firstItem="3eB-nM-cSZ" firstAttribute="trailing" secondItem="ED3-uO-qxV" secondAttribute="trailing" id="LBq-bq-ly4"/>
+                        <constraint firstAttribute="bottom" secondItem="3eB-nM-cSZ" secondAttribute="bottom" id="YlR-0E-HYQ"/>
+                        <constraint firstItem="3eB-nM-cSZ" firstAttribute="leading" secondItem="ED3-uO-qxV" secondAttribute="leading" id="e0E-ax-Tpd"/>
+                        <constraint firstItem="3eB-nM-cSZ" firstAttribute="top" secondItem="ktv-Wz-s6f" secondAttribute="top" id="eQQ-up-wxV"/>
+                    </constraints>
+                    <viewLayoutGuide key="contentLayoutGuide" id="ED3-uO-qxV"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="ktv-Wz-s6f"/>
+                </scrollView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="aYP-eD-BeB" firstAttribute="top" secondItem="dUg-Kr-xav" secondAttribute="bottom" constant="8" id="8yv-dE-0vf"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="aYP-eD-BeB" secondAttribute="bottom" id="IOa-bG-iwo"/>
+                <constraint firstItem="dUg-Kr-xav" firstAttribute="top" secondItem="l1Q-bh-Shj" secondAttribute="bottom" id="VZO-9a-zJc"/>
+                <constraint firstItem="l1Q-bh-Shj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Vah-gI-k4T"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="aYP-eD-BeB" secondAttribute="trailing" id="aqL-Fx-8Gi"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="dUg-Kr-xav" secondAttribute="trailing" id="mHN-HH-Vwz"/>
+                <constraint firstAttribute="trailing" secondItem="l1Q-bh-Shj" secondAttribute="trailing" id="ohc-Ka-lSH"/>
+                <constraint firstItem="dUg-Kr-xav" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="p4R-ek-5tl"/>
+                <constraint firstItem="aYP-eD-BeB" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="pUn-Ll-tuC"/>
+                <constraint firstItem="l1Q-bh-Shj" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="uqu-XI-ALN"/>
+            </constraints>
+            <point key="canvasLocation" x="137.68115942028987" y="123.88392857142857"/>
+        </view>
+    </objects>
+    <designables>
+        <designable name="uGI-3L-AcN">
+            <size key="intrinsicContentSize" width="1464" height="31"/>
+        </designable>
+    </designables>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

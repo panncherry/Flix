@@ -15,7 +15,7 @@ class Movie {
     var posterPath: String
     var backdropPath: String
     var id: NSNumber
-    var genre: Genre
+    var genreIds: [Genre] = []
     
     init(dictionary: [String: Any]) {
         title = dictionary["title"] as? String ?? "No title"
@@ -24,7 +24,11 @@ class Movie {
         posterPath = dictionary["poster_path"] as? String ?? "No poster path"
         backdropPath = dictionary["backdrop_path"] as? String ?? "No backdrop path"
         id = dictionary["id"] as! NSNumber
-        genre = dictionary["genre"] as? Genre ?? Genre(id: 0, type: "")
+
+        let genreIds = dictionary["genre_ids"] as? [Int] ?? []
+        for id in genreIds {
+            self.genreIds.append(Genre(id: id))
+        }
     }
 
     class func movies(dictionaries: [[String: Any]]) -> [Movie] {
