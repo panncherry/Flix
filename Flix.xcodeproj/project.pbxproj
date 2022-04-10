@@ -23,6 +23,10 @@
 		0862A9B1280260AD00AEDFE6 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0862A9AF280260AD00AEDFE6 /* MovieDetailViewController.swift */; };
 		0862A9B4280260D300AEDFE6 /* TrailerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0862A9B2280260D300AEDFE6 /* TrailerViewController.xib */; };
 		0862A9B5280260D300AEDFE6 /* TrailerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0862A9B3280260D300AEDFE6 /* TrailerViewController.swift */; };
+		0862A9B8280298E500AEDFE6 /* DefaultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0862A9B6280298E500AEDFE6 /* DefaultCollectionViewCell.swift */; };
+		0862A9B9280298E500AEDFE6 /* DefaultCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0862A9B7280298E500AEDFE6 /* DefaultCollectionViewCell.xib */; };
+		0862A9BC2802A11700AEDFE6 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0862A9BB2802A11700AEDFE6 /* DataProvider.swift */; };
+		0862A9BE2802A45500AEDFE6 /* SelectedPopularMoiveGenreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0862A9BD2802A45500AEDFE6 /* SelectedPopularMoiveGenreData.swift */; };
 		087F856922D901990058330C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 087F856822D901990058330C /* WebKit.framework */; };
 		08A424FC27FE26DE000AF521 /* FlixTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A424FA27FE26DE000AF521 /* FlixTabBarController.swift */; };
 		08A424FD27FE26DE000AF521 /* FlixTabBarController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08A424FB27FE26DE000AF521 /* FlixTabBarController.xib */; };
@@ -75,6 +79,10 @@
 		0862A9AF280260AD00AEDFE6 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		0862A9B2280260D300AEDFE6 /* TrailerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrailerViewController.xib; sourceTree = "<group>"; };
 		0862A9B3280260D300AEDFE6 /* TrailerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailerViewController.swift; sourceTree = "<group>"; };
+		0862A9B6280298E500AEDFE6 /* DefaultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCollectionViewCell.swift; sourceTree = "<group>"; };
+		0862A9B7280298E500AEDFE6 /* DefaultCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DefaultCollectionViewCell.xib; sourceTree = "<group>"; };
+		0862A9BB2802A11700AEDFE6 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		0862A9BD2802A45500AEDFE6 /* SelectedPopularMoiveGenreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedPopularMoiveGenreData.swift; sourceTree = "<group>"; };
 		087F856822D901990058330C /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		08A424FA27FE26DE000AF521 /* FlixTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlixTabBarController.swift; sourceTree = "<group>"; };
 		08A424FB27FE26DE000AF521 /* FlixTabBarController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlixTabBarController.xib; sourceTree = "<group>"; };
@@ -195,6 +203,14 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		0862A9BA2802A0F100AEDFE6 /* DataProvider */ = {
+			isa = PBXGroup;
+			children = (
+				0862A9BB2802A11700AEDFE6 /* DataProvider.swift */,
+			);
+			path = DataProvider;
+			sourceTree = "<group>";
+		};
 		08CDDE05229EE9EF00F592BF /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,10 +263,13 @@
 		08DDDDB62802488200B124B3 /* PopularMoviesViewController */ = {
 			isa = PBXGroup;
 			children = (
+				0862A9B6280298E500AEDFE6 /* DefaultCollectionViewCell.swift */,
+				0862A9B7280298E500AEDFE6 /* DefaultCollectionViewCell.xib */,
 				0862A9A92802609A00AEDFE6 /* MoviePosterCollectionViewCell.swift */,
 				0862A9A62802609A00AEDFE6 /* MoviePosterCollectionViewCell.xib */,
 				0862A9A72802609A00AEDFE6 /* PopularMoviesViewController.swift */,
 				0862A9A82802609A00AEDFE6 /* PopularMoviesViewController.xib */,
+				0862A9BD2802A45500AEDFE6 /* SelectedPopularMoiveGenreData.swift */,
 			);
 			path = PopularMoviesViewController;
 			sourceTree = "<group>";
@@ -282,8 +301,9 @@
 			children = (
 				08F01E432134EF990038AA2C /* AppDelegate.swift */,
 				08613FFA216D5998007CCCB3 /* API */,
-				0859DB8028022E5D000E7812 /* Networking */,
 				082D836C2166CE4A00BDFAE3 /* Models */,
+				0859DB8028022E5D000E7812 /* Networking */,
+				0862A9BA2802A0F100AEDFE6 /* DataProvider */,
 				0859DB7F2801359D000E7812 /* TabBarController */,
 				08DDDDAA2802481C00B124B3 /* ViewControllers */,
 				0859DB7928013406000E7812 /* Shared */,
@@ -453,6 +473,7 @@
 				0862A9AC2802609A00AEDFE6 /* PopularMoviesViewController.xib in Resources */,
 				08F01E4B2134EF9B0038AA2C /* Assets.xcassets in Resources */,
 				0862A9AA2802609A00AEDFE6 /* MoviePosterCollectionViewCell.xib in Resources */,
+				0862A9B9280298E500AEDFE6 /* DefaultCollectionViewCell.xib in Resources */,
 				08DDDDC22802497C00B124B3 /* MovieTableViewCell.xib in Resources */,
 				08A424FD27FE26DE000AF521 /* FlixTabBarController.xib in Resources */,
 				08DDDDC6280249BB00B124B3 /* NowPlayingMoviesViewController.xib in Resources */,
@@ -561,7 +582,10 @@
 				0859DB8228022E7A000E7812 /* APIManager.swift in Sources */,
 				0859DB7D28013443000E7812 /* UIImageView+Extensions.swift in Sources */,
 				08DDDDC828024A8500B124B3 /* CommonViewController.swift in Sources */,
+				0862A9BC2802A11700AEDFE6 /* DataProvider.swift in Sources */,
 				08613FFC216D59B5007CCCB3 /* NetworkManager.swift in Sources */,
+				0862A9BE2802A45500AEDFE6 /* SelectedPopularMoiveGenreData.swift in Sources */,
+				0862A9B8280298E500AEDFE6 /* DefaultCollectionViewCell.swift in Sources */,
 				0859DB8728023877000E7812 /* UIColor+Extension.swift in Sources */,
 				0862A9B5280260D300AEDFE6 /* TrailerViewController.swift in Sources */,
 				0862A9AD2802609A00AEDFE6 /* MoviePosterCollectionViewCell.swift in Sources */,

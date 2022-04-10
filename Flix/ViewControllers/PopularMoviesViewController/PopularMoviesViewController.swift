@@ -18,31 +18,14 @@ class PopularMoviesViewController: CommonViewController {
     // Properties
     var movies: [Movie] = []
     var filteredMovie:[Movie] = []
-    var selectedGenre: GenreType? = .all
+    var selectedGenreType: GenreType? = .all
+    var defaultSelectedGenreString: String = ""
     var refreshControl: UIRefreshControl = UIRefreshControl()
 
     var selectedSegmentIndex: Int = 0 {
         didSet {
-            if self.selectedSegmentIndex == 0 { self.selectedGenre = .all }
-            if self.selectedSegmentIndex == 1 { self.selectedGenre = .adventure }
-            if self.selectedSegmentIndex == 2 { self.selectedGenre = .animation }
-            if self.selectedSegmentIndex == 3 { self.selectedGenre = .action }
-            if self.selectedSegmentIndex == 4 { self.selectedGenre = .comedy }
-            if self.selectedSegmentIndex == 5 { self.selectedGenre = .crime }
-            if self.selectedSegmentIndex == 5 { self.selectedGenre = .documentary }
-            if self.selectedSegmentIndex == 7 { self.selectedGenre = .drama }
-            if self.selectedSegmentIndex == 8 { self.selectedGenre = .family }
-            if self.selectedSegmentIndex == 9 { self.selectedGenre = .fantasy }
-            if self.selectedSegmentIndex == 10 { self.selectedGenre = .history }
-            if self.selectedSegmentIndex == 11 { self.selectedGenre = .horror }
-            if self.selectedSegmentIndex == 12 { self.selectedGenre = .music }
-            if self.selectedSegmentIndex == 13 { self.selectedGenre = .mystery }
-            if self.selectedSegmentIndex == 14 { self.selectedGenre = .romance }
-            if self.selectedSegmentIndex == 15 { self.selectedGenre = .scienceFiction }
-            if self.selectedSegmentIndex == 16 { self.selectedGenre = .tvMovie }
-            if self.selectedSegmentIndex == 17 { self.selectedGenre = .thriller }
-            if self.selectedSegmentIndex == 18 { self.selectedGenre = .war }
-            if self.selectedSegmentIndex == 19 { self.selectedGenre = .western }
+            self.selectedGenreType = DataProvider.sharedDataProvider.selectedPopularMovieTabData(selectedSegmentIndex).type
+            self.defaultSelectedGenreString = DataProvider.sharedDataProvider.selectedPopularMovieTabData(selectedSegmentIndex).text
             self.fetchMovies()
         }
     }
@@ -67,8 +50,7 @@ class PopularMoviesViewController: CommonViewController {
         NetworkManager.sharedNetworkManager.requestMovies(moviesURL: APIManager.popularMoviesURL) { response in
 
             guard let movies = response.movies else { return }
-
-            guard let selectedGenre = self.selectedGenre, selectedGenre != .all else {
+            guard let type = self.selectedGenreType, type != .all else {
                 self.updateMovies(movies)
                 return
             }
@@ -76,7 +58,7 @@ class PopularMoviesViewController: CommonViewController {
             var selectedMovies: [Movie] = []
             for movie in movies {
                 for id in movie.genreIds {
-                    if id.type == selectedGenre {
+                    if id.type == type {
                         selectedMovies.append(movie)
                     }
                 }
@@ -100,7 +82,6 @@ class PopularMoviesViewController: CommonViewController {
 
     @IBAction func segmentedControlValueChanged(_ sender: UISegmentedControl) {
         self.selectedSegmentIndex = sender.selectedSegmentIndex
-
         searchBar.text = ""
         searchBar.showsCancelButton = false
         searchBar.resignFirstResponder()
@@ -114,15 +95,19 @@ extension PopularMoviesViewController: UICollectionViewDelegate, UICollectionVie
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: MoviePosterCollectionViewCell.nibName, bundle: nil), forCellWithReuseIdentifier: MoviePosterCollectionViewCell.identifier)
+        collectionView.register(UINib(nibName: DefaultCollectionViewCell.nibName, bundle: nil), forCellWithReuseIdentifier: DefaultCollectionViewCell.identifier)
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movies.count
+        return movies.count == 0 ? 1 : movies.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MoviePosterCollectionViewCell.identifier, for: indexPath) as? MoviePosterCollectionViewCell, self.movies.count > 0 else {
-            return UICollectionViewCell()
+
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DefaultCollectionViewCell.identifier, for: indexPath) as! DefaultCollectionViewCell
+            cell.textLabel.text = "No \(self.defaultSelectedGenreString) available. Please try again later."
+            return cell
         }
 
         cell.posterImageView.loadImage(for: self.movies[indexPath.row])
@@ -130,6 +115,8 @@ extension PopularMoviesViewController: UICollectionViewDelegate, UICollectionVie
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard movies.count > 0 else { return }
+
         let selectedMovie = movies[indexPath.row]
         self.navigationController?.pushViewController(MovieDetailViewController(movie: selectedMovie), animated: true)
     }
@@ -158,6 +145,11 @@ extension PopularMoviesViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        guard movies.count > 0 else {
+            return CGSize(width: self.view.frame.width, height: 140)
+        }
+
         let layout = collectionViewLayout as! UICollectionViewFlowLayout
         let widthPerItem = collectionView.frame.width / 2 - layout.minimumInteritemSpacing
         return CGSize(width: widthPerItem - 4, height: 250)
