@@ -28,7 +28,7 @@ class NowPlayingMoviesViewController: CommonViewController {
         self.addRefreshControl()
         self.initializeTableView()
         self.initializeSearchBar()
-        self.addCutsomLeftNavigationTitle(title: "Movies")
+        self.addCutsomLeftNavigationTitle(title: "Now Playing Movies")
     }
 
     override func viewWillAppear(_ animated: Bool) {
